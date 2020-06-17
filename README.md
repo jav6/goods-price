@@ -1,6 +1,3 @@
-# hello-world
-For learn
-hi .
-
-
+# Start hello-world Readme
+For learn  GitHub
 #end
