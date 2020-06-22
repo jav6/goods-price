@@ -1,1 +1,2 @@
-#English isn't my first language, so please excuse any mistakes
+# goods-price
+For CRUD price of goods in MySQL with php
