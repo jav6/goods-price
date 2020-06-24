@@ -1,5 +1,5 @@
 <?php
-if (isset($_GET["submit"])) {
+if (isset($_GET["submit"]) && !empty($goods_name)) {
     $goods_name = $_GET["goods_name"];
 
     //connect and test database
@@ -17,7 +17,7 @@ if (isset($_GET["submit"])) {
     </head>
     <body>
     <center>
-        <p>Search for find Price</p>
+        <p style="text-align: center; background-color: aqua;">Search for find Price</p>
         <form action="">
             Goods name : <input name="goods_name" type="text" />
             <br />
@@ -25,14 +25,15 @@ if (isset($_GET["submit"])) {
         </form>
         <br />
         <?php
-        if (isset($_GET["submit"])) {
+        if (isset($_GET["submit"]) && !empty($goods_name)) {
             if ($result = $db_con->query($search_qu)) {
                 while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-                    echo "ID : " . $row["id"] . " - Name : " . $row["name"] . " - Price : " . $row["price"] . "<br/>";
+                    echo "<hr />"."ID : " . $row["id"] . " - Name : " . $row["name"] . " - Price : " . $row["price"] . "<hr />";
                 }
             }
         }
         ?>
     </center>
+    <footer style="text-align: center; background-color: aqua;">v0.0 Starter</footer>
 </body>
 </html>
