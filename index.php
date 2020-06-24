@@ -1,5 +1,5 @@
 <?php
-if (isset($_GET["submit"]) && !empty($goods_name)) {
+if (isset($_GET["submit"])) {
     $goods_name = $_GET["goods_name"];
 
     //connect and test database
@@ -31,6 +31,8 @@ if (isset($_GET["submit"]) && !empty($goods_name)) {
                     echo "<hr />"."ID : " . $row["id"] . " - Name : " . $row["name"] . " - Price : " . $row["price"] . "<hr />";
                 }
             }
+        }else {
+            echo "Please Enter Goods name";
         }
         ?>
     </center>
