@@ -1,5 +1,5 @@
 <?php
-
+// include database connection file
 include 'db_con.php';
 
 if (isset($_GET["submit"])) {
@@ -17,6 +17,7 @@ if (isset($_GET["submit"])) {
     	if(!empty($update_qu)){$update_qu .="unit = '{$unit}' ";}
     	$update_qu .="WHERE id = '{$id}';";
         
+        // get result sql query
         if ($db_con->query($update_qu) === TRUE) {
             echo "Record Update Successfully.";
             }else {
@@ -25,6 +26,7 @@ if (isset($_GET["submit"])) {
                 }else {
                     echo 'Please Enter ID';
                     }
+                    $db_con -> close();
 }
 ?>
 <!DOCTYPE html>
@@ -36,11 +38,28 @@ if (isset($_GET["submit"])) {
     <body>
     <center>
         <form action=""  method="_POST">
-            ID : <input name="id" type="text" /><br />
-            Name : <input name="name" type="text"><br />
-            Price : <input name="price" type="text"><br />
-            Unit : <input name="unit" type="text"><br />
-            <input name="submit" type="submit" value="Submit"><br />
+            <table>
+                <tr>
+                    <td>ID :</td>
+                    <td><input name="id" type="text" /></td>
+                </tr>
+                <tr>
+                    <td>Name :</td>
+                    <td><input name="name" type="text"></td>
+                </tr>
+                <tr>
+                    <td>Price :</td>
+                    <td><input name="price" type="text"></td>
+                </tr>
+                <tr>
+                    <td>Unit :</td>
+                    <td><input name="unit" type="text"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input name="submit" type="submit" value="Submit"></td>
+                </tr>
+            </table>
         </form>
     </center>
 </body>
