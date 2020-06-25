@@ -8,11 +8,13 @@ if (isset($_GET["submit"])) {
     $name = $_GET["name"];
     $price = $_GET["price"];
     $unit = $_GET["unit"];
+    $new_id = $_GET["new_id"];
     
     if(!empty($id)){
     	$update_qu = "UPDATE goods ";
     	$update_qu .="SET ";
-    	if(!empty($name)){$update_qu .="name = '{$name}', ";}
+    	if(!empty($new_id)){$update_qu .="id = '{$new_id}', ";}
+        if(!empty($name)){$update_qu .="name = '{$name}', ";}
     	if(!empty($price)){$update_qu .="price = '{$price}', ";}
     	if(!empty($update_qu)){$update_qu .="unit = '{$unit}' ";}
     	$update_qu .="WHERE id = '{$id}';";
@@ -37,23 +39,27 @@ if (isset($_GET["submit"])) {
     </head>
     <body>
     <center>
-        <form action=""  method="_POST">
+        <form action="">
             <table>
                 <tr>
                     <td>ID :</td>
-                    <td><input name="id" type="text" /></td>
+                    <td><input name="id" type="text" value="<?php if(isset($_GET["id"])){echo $_GET["id"];}?>" /></td>
                 </tr>
                 <tr>
                     <td>Name :</td>
-                    <td><input name="name" type="text"></td>
+                    <td><input name="name" type="text" value="<?php if(isset($_GET["name"])){echo $_GET["name"];}?>" ></td>
                 </tr>
                 <tr>
                     <td>Price :</td>
-                    <td><input name="price" type="text"></td>
+                    <td><input name="price" type="text" value="<?php if(isset($_GET["price"])){echo $_GET["price"];}?>" ></td>
                 </tr>
                 <tr>
                     <td>Unit :</td>
-                    <td><input name="unit" type="text"></td>
+                    <td><input name="unit" type="text" value="<?php if(isset($_GET["unit"])){echo $_GET["unit"];}?>" ></td>
+                </tr>
+                <tr>
+                    <td>New ID:</td>
+                    <td><input name="new_id" type="text"></td>
                 </tr>
                 <tr>
                     <td></td>

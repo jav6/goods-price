@@ -21,15 +21,26 @@ if (isset($_GET["submit"])) {
     <head>
         <meta charset="UTF-8">
         <title>Goods Price</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="script/style.css">
     </head>
     <body>
     <center>
         <p style="text-align: center; background-color: aqua;">Search for find Price</p>
         <form method="_GET" action="">
-            Goods name : <input name="goods_name" type="text" />
-            <br />
-            <input name="submit" class="margin" type="submit" value="Submit">
+            <table>
+                <tr>
+                    <td>Goods name :</td>
+                    <td>
+                        <input name="goods_name" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input name="submit" class="margin" type="submit" value="Search">
+                    </td>
+                </tr>
+            </table>
         </form>
         <br />
         <?php
@@ -46,6 +57,8 @@ if (isset($_GET["submit"])) {
                 echo "<th>Name</th>";
                 echo "<th>Price</th>";
                 echo "<th>Unit</th>";
+                echo "<th>Edit</th>";
+                echo "<th>Delete</th>";
                 echo "</tr>";
                 while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
                     echo "<tr>";
@@ -53,6 +66,9 @@ if (isset($_GET["submit"])) {
                     echo "<td>".$row["name"]."</td>";
                     echo "<td>".$row["price"]."</td>";
                     echo "<td>".$row["unit"]."</td>";
+                    echo "<td><a target=\"_blank\" href=\"do-update?id=".$row["id"]."&name=".$row["name"]."&price=".$row["price"]."&unit=".$row["unit"]."\"><img src=\"media/pen.png\"></a></td>";
+
+                    echo "<td><a target=\"_blank\" href=\"do-delete?id=".$row["id"]."\"><img src=\"media/delete.png\"></a></td>";
                     echo "</tr>";
                 }
                 echo "</table>";
@@ -61,6 +77,9 @@ if (isset($_GET["submit"])) {
         }elseif (isset($_GET["submit"]) && empty($goods_name)) {
             echo "Please Enter Goods name";
         }
+        echo "<br />";
+        echo "<br />";
+        echo "<a href=\"do-insert\" target=\"_blank\"><img src=\"media/add.png\"></a>";
         ?>
     </center>
     <br />
