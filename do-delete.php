@@ -30,7 +30,7 @@ if (isset($_GET["submit"])) {
     <body>
     <center>
         <form action=""  method="_POST">
-            ID : <input name="id" type="text" value="<?php if(isset($_GET["id"])){echo $_GET["id"];}?>" /><br />
+            ID : <input name="id" type="text" <?php if(isset($_GET["id"])){echo "value=\"".$_GET["id"]."\" disabled";}?> /><br />
             <input name="submit" type="submit" value="Delete"><br />
         </form>
     </center>
