@@ -83,6 +83,6 @@ if (isset($_GET["submit"])) {
         ?>
     </center>
     <br />
-    <footer style="text-align: center; background-color: aqua;">v0.0 Starter</footer>
+    <footer style="text-align: center; background-color: aqua;">v1.1</footer>
 </body>
 </html>
