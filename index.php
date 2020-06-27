@@ -21,7 +21,7 @@ if (isset($_GET["submit"])) {
     <head>
         <meta charset="UTF-8">
         <title>Goods Price</title>
-        <link rel="stylesheet" href="script/style.css">
+        <link rel="stylesheet" href="source/style.css">
     </head>
     <body>
     <center>
