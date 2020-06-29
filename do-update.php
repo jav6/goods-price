@@ -43,7 +43,7 @@ if (isset($_GET["submit"])) {
             <table>
                 <tr>
                     <td>ID :</td>
-                    <td><input name="id" type="text" <?php if(isset($_GET["id"])){echo "value=\"".$_GET["id"]."\" disabled";}?>/></td>
+                    <td><input name="id" type="text" <?php if(isset($_GET["id"])){echo "value=\"".$_GET["id"]."\" style=\"pointer-events:none;\"";}?>/></td>
                 </tr>
                 <tr>
                     <td>Name :</td>
