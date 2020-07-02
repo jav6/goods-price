@@ -1,3 +1,17 @@
+<?php 
+if (isset($_GET["submit"])) {
+
+$username = $_GET["username"];
+$password = $_GET["password"];
+
+include 'db_con.php';
+
+if ($username = "admin" && $password = "secret") {
+	echo "true";
+}
+
+}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +28,7 @@
 			</tr>
 			<tr>
 				<td>Password :</td>
-				<td><input type="text" name="password" /></td>
+				<td><input type="password" name="password" /></td>
 			</tr>
 			<tr>
 				<td></td>
