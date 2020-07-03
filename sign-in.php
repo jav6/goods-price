@@ -1,10 +1,37 @@
 <?php
 include 'db_con.php';
 session_start();
+$is_admin = null;
+if (isset($_SESSION["admin"])){
+$sql_query_check_token = "SELECT token from user WHERE token = '{$_SESSION["admin"]}';";
+$sql_qu_tok_result = mysqli_query($db_con, $sql_query_check_token);
+$sql_qu_tok_result_num = mysqli_num_rows($sql_qu_tok_result);
+if ($sql_qu_tok_result_num > 0){
+    while ($row = mysqli_fetch_assoc($sql_qu_tok_result)){
+        if ($row["token"] === $_SESSION["admin"]){
+            $is_admin = true;
+            ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Admin</title>
+</head>
+<body>
+	<center>
+	<img src='media/safety.png' width="100" height="100"><br>
+        <p>You are Admin</p><br>
+        <a href="do-clear-session.php">Log Out</a>
+    </center>
+</head>
+</html>
+            <?php
+        }
+    }
+}
+}
 
-//$sql_query_check_token = "SELECT token from user WHERE token = '{$_SESSION[$]}' ";
-
-
+if ($is_admin === null){
 if (isset($_GET["submit"])) {
 
 $username = $_GET["username"];
@@ -43,6 +70,7 @@ if (isset($username) && isset($password)) {
                 $sql_query_update .= "WHERE username = '{$username}';";
                 if (mysqli_query($db_con, $sql_query_update) === true){
                     echo "You are Logged in";
+                    header("Location: http://s.s/goods-price/index");
                 }
                 break;
             }
@@ -50,8 +78,7 @@ if (isset($username) && isset($password)) {
     }
 }
 }
-$db_con->close();
- ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,3 +106,7 @@ $db_con->close();
 </center>
 </body>
 </html>
+<?php
+}
+$db_con->close();
+?>

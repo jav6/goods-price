@@ -1,4 +1,28 @@
-<?php include "db_con.php"; // include database connection ?>
+<?php
+
+include 'db_con.php';
+session_start();
+if (isset($_SESSION["admin"])){
+$sql_query_check_token = "SELECT token from user WHERE token = '{$_SESSION["admin"]}';";
+$sql_qu_tok_result = mysqli_query($db_con, $sql_query_check_token);
+$sql_qu_tok_result_num = mysqli_num_rows($sql_qu_tok_result);
+if ($sql_qu_tok_result_num > 0){
+    while ($row = mysqli_fetch_assoc($sql_qu_tok_result)){
+        if ($row["token"] === $_SESSION["admin"]){
+            echo "You are Admin";
+        }else{
+            header("Location: http://s.s/goods-price/index");
+        }
+    }
+}
+}else{
+    header("Location: http://s.s/goods-price/index");
+}
+
+?>
+
+
+<?php //include "db_con.php"; // include database connection ?>
 <?php
 if (isset($_GET["goods_name"])) {
 	$goods_name = $_GET["goods_name"];

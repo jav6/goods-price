@@ -80,6 +80,8 @@ if (isset($_GET["submit"])) {
         echo "<br />";
         echo "<br />";
         echo "<a href=\"do-insert\" target=\"_blank\"><img src=\"media/add.png\"></a>";
+        echo "&nbsp;";
+        echo "<a href=\"sign-in\" target=\"_blank\"><img src=\"media/authentication.png\"></a>";
         ?>
     </center>
     <br />
