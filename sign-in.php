@@ -21,7 +21,7 @@ if ($sql_qu_tok_result_num > 0){
 	<center>
 	<img src='media/safety.png' width="100" height="100"><br>
         <p>You are Admin</p><br>
-        <a href="do-clear-session.php">Log Out</a>
+        <a href="include/do-clear-session.php">Log Out</a>
     </center>
 </head>
 </html>

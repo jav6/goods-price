@@ -1,9 +1,11 @@
 <?php
+$title = "Goods Price Index";
 if (isset($_GET["submit"])) {
+
     $goods_name = $_GET["goods_name"];
 
     // include database connection file
-    include 'db_con.php';
+    include 'include/db_con.php';
 
     // search goods on database
     $search_sql = "SELECT * FROM goods";
@@ -11,21 +13,14 @@ if (isset($_GET["submit"])) {
     //for show all data (record)
     if ($goods_name === "/all/") {
         $search_sql .= ";";
-    } else {
+    }else {
         $search_sql .= " WHERE name like '%{$goods_name}%';";
     }
 }
 ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Goods Price</title>
-        <link rel="stylesheet" href="source/style.css">
-    </head>
-    <body>
+<?php include 'include/layout/htmlstart.php'; ?>
     <center>
-        <p style="text-align: center; background-color: aqua;">Search for find Price</p>
+        <p style="text-align: center; background-color: #00ffff;">Search for find Price</p>
         <form method="_GET" action="">
             <table>
                 <tr>
@@ -51,40 +46,41 @@ if (isset($_GET["submit"])) {
             if ($result = $db_con -> query($search_sql)) {
                 
                 // loop for print sql query
-                echo "<table>";
-                echo "<tr>";
-                echo "<th>ID</th>";
-                echo "<th>Name</th>";
-                echo "<th>Price</th>";
-                echo "<th>Unit</th>";
-                echo "<th>Edit</th>";
-                echo "<th>Delete</th>";
-                echo "</tr>";
+                ?>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Unit</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <?php
                 while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
                     echo "<tr>";
                     echo "<td>".$row["id"]."</td>";
                     echo "<td>".$row["name"]."</td>";
                     echo "<td>".$row["price"]."</td>";
                     echo "<td>".$row["unit"]."</td>";
-                    echo "<td><a target=\"_blank\" href=\"do-update?id=".$row["id"]."&name=".$row["name"]."&price=".$row["price"]."&unit=".$row["unit"]."\"><img src=\"media/pen.png\"></a></td>";
+                    echo "<td><a href=\"do-update?id=".$row["id"]."&name=".$row["name"]."&price=".$row["price"]."&unit=".$row["unit"]."\"><img src=\"media/pen.png\"></a></td>";
 
-                    echo "<td><a target=\"_blank\" href=\"do-delete?id=".$row["id"]."\"><img src=\"media/delete.png\"></a></td>";
+                    echo "<td><a href=\"do-delete?id=".$row["id"]."\"><img src=\"media/delete.png\"></a></td>";
                     echo "</tr>";
                 }
-                echo "</table>";
+                ?>
+                </table>
+                <?php
             }
-            $db_con -> close();
         }elseif (isset($_GET["submit"]) && empty($goods_name)) {
             echo "Please Enter Goods name";
         }
-        echo "<br />";
-        echo "<br />";
-        echo "<a href=\"do-insert\" target=\"_blank\"><img src=\"media/add.png\"></a>";
-        echo "&nbsp;";
-        echo "<a href=\"sign-in\" target=\"_blank\"><img src=\"media/authentication.png\"></a>";
         ?>
+        <br />
+        <br />
+        <a href="do-insert" ><img src="media/add.png"></a>
+        &nbsp;
+        <a href="sign-in" ><img src="media/authentication.png"></a>
     </center>
-    <br />
-    <footer style="text-align: center; background-color: aqua;">v1.1</footer>
-</body>
-</html>
+<?php include 'include/layout/footer.php';?>
+<?php include 'include/layout/htmlend.php';?>
