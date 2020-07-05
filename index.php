@@ -45,39 +45,43 @@ if (isset($_GET["submit"])) {
             // get and print sql query result
             if ($result = $db_con -> query($search_sql)) {
                 
-                // loop for print sql query
+                //table Subject
                 ?>
-                <table>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Unit</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-                    <?php
-                while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-                    echo "<tr>";
-                    echo "<td>".$row["id"]."</td>";
-                    echo "<td>".$row["name"]."</td>";
-                    echo "<td>".$row["price"]."</td>";
-                    echo "<td>".$row["unit"]."</td>";
-                    echo "<td><a href=\"do-update?id=".$row["id"]."&name=".$row["name"]."&price=".$row["price"]."&unit=".$row["unit"]."\"><img src=\"media/pen.png\"></a></td>";
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Unit</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <?php
 
-                    echo "<td><a href=\"do-delete?id=".$row["id"]."\"><img src=\"media/delete.png\"></a></td>";
-                    echo "</tr>";
-                }
-                ?>
-                </table>
-                <?php
+    // loop for print sql query
+    while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+        ?>
+    <tr>
+        <td><?php echo $row["id"]; ?></td>
+        <td><?php echo $row["name"]; ?></td>
+        <td><?php echo $row["price"]; ?></td>
+        <td><?php echo $row["unit"]; ?></td>
+        <td><a href="do-update?id=<?php echo $row["id"]."&name=".$row["name"]."&price=".$row["price"]."&unit=".$row["unit"]; ?>"><img src="media/pen.png"></a></td>
+        <td><a href="do-delete?id=<?php echo $row["id"]; ?>"><img src="media/delete.png"></a></td>
+    </tr>
+    <?php
+    }
+    ?>
+</table>
+<?php
             }
         }elseif (isset($_GET["submit"]) && empty($goods_name)) {
             echo "Please Enter Goods name";
         }
         ?>
-        <br />
-        <br />
+        
+        <br>
+        <br>
         <a href="do-insert" ><img src="media/add.png"></a>
         &nbsp;
         <a href="sign-in" ><img src="media/authentication.png"></a>
