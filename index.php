@@ -69,6 +69,7 @@ if (isset($_GET["submit"])) {
 ?>
             </table>
 <?php
+                $db_con->close();
             }
         }elseif (isset($_GET["submit"]) && empty($goods_name)) {
             echo "Please Enter Goods name";

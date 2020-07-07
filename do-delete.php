@@ -1,28 +1,10 @@
 <?php
+$title = "Delete Data - (Record)";
+//include database connection file
+include 'include/db_con.php';
 
-
-include 'db_con.php';
-session_start();
-if (isset($_SESSION["admin"])){
-$sql_query_check_token = "SELECT token from user WHERE token = '{$_SESSION["admin"]}';";
-$sql_qu_tok_result = mysqli_query($db_con, $sql_query_check_token);
-$sql_qu_tok_result_num = mysqli_num_rows($sql_qu_tok_result);
-if ($sql_qu_tok_result_num > 0){
-    while ($row = mysqli_fetch_assoc($sql_qu_tok_result)){
-        if ($row["token"] === $_SESSION["admin"]){
-            echo "You are Admin";
-        }else{
-            header("Location: http://s.s/goods-price/index");
-        }
-    }
-}
-}else{
-            header("Location: http://s.s/goods-price/index");
-        }
-
-
-// include database connection file
-//include 'db_con.php';
+//check access
+include 'include/check_access.php';
 
 if (isset($_GET["submit"])) {
 
@@ -36,24 +18,19 @@ if (isset($_GET["submit"])) {
         } else {
             echo "Error  Delete Record :".$db_con -> error();
         }
+
     } else {
         echo 'Please Enter ID';
     }
     $db_con -> close();
 }
 ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Delete Data - (Record)</title>
-    </head>
-    <body>
+<?php include 'include/layout/htmlstart.php'; ?>
     <center>
-        <form action=""  method="_POST">
-            ID : <input name="id" type="text" <?php if(isset($_GET["id"])){echo "value=\"".$_GET["id"]."\" style=\"pointer-events:none;\"";}?> /><br />
-            <input name="submit" type="submit" value="Delete"><br />
+        <form method="_GET">
+            ID : <input name="id" type="text" <?php if(isset($_GET["id"])){echo "value=\"".$_GET["id"]."\" style=\"pointer-events:none;\"";}?>><br>
+            <input name="submit" type="submit" value="Delete"><br>
         </form>
     </center>
-</body>
-</html>
+<?php include 'include/layout/footer.php';?>
+<?php include 'include/layout/htmlend.php';?>
