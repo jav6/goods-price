@@ -25,6 +25,7 @@ if (isset($_GET["submit"])) {
 $username = $_GET["username"];
 $password = $_GET["password"];
 
+//set encrypt session for aut
 if (isset($username) && isset($password)) {
 
     $str_source = "qa69zw13sxedcrfv2t4gbyhn5ujm78ikolp0";
