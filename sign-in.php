@@ -53,8 +53,18 @@ if (!isset($_GET["submit"])){
 <?php include 'include/layout/htmlend.php';?>
 <?php
 		}
-		if ($is_admin === true) {
-			echo "you Are Admin";
+		if ($is_admin === true) {?>
+<?php include 'include/layout/htmlstart.php'; ?>
+<?php include 'include/layout/header.php';?>
+<center>
+	<img src="media/safety.png" width="10%" height="10%">
+	<br>
+	<a href="include/do-clear-session.php">Log Out</a>
+	<?php include 'include/layout/global_link.php'; ?>
+</center>
+<?php include 'include/layout/footer.php';?>
+<?php include 'include/layout/htmlend.php';?>
+<?php
 		}
 	}elseif (isset($_GET["submit"])){
 	if ($is_admin === null){
@@ -93,6 +103,7 @@ if (!isset($_GET["submit"])){
                 				$sql_query_update = "UPDATE user SET ";
                 				$sql_query_update .= "token = '{$str_last_result}' ";
                 				$sql_query_update .= "WHERE username = '{$username}';";
+
 						if (mysqli_query($db_con, $sql_query_update) === true){
 							//echo "You are Logged in";
 							header("Location: /");
