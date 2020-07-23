@@ -2,7 +2,6 @@
 //page info tag
 $title = "SignIn";
 $header = "For login";
-$localhost = "localhost";
 
 //database connection
 include 'include/db_con.php';
@@ -95,7 +94,7 @@ if (!isset($_GET["submit"])){
                 				$sql_query_update .= "WHERE username = '{$username}';";
 						if (mysqli_query($db_con, $sql_query_update) === true){
 							//echo "You are Logged in";
-							header("Location: http://".$localhost);
+							header("Location: /");
 						}
 						break;
 					}
