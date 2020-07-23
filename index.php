@@ -1,5 +1,7 @@
 <?php
+//page info
 $title = "Goods Price Index";
+$header = "Search for find Price";
 if (isset($_GET["submit"])) {
 
     $goods_name = $_GET["goods_name"];
@@ -20,7 +22,7 @@ if (isset($_GET["submit"])) {
 ?>
 <?php include 'include/layout/htmlstart.php'; ?>
     <center>
-        <p class="title">Search for find Price</p>
+        <?php include 'include/header.php' ?>
         <form method="_GET">
             <table>
                 <tr>
