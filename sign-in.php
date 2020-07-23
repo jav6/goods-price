@@ -111,8 +111,18 @@ if (!isset($_GET["submit"])){
 						break;
 					}
 				}
+			}else{
+				echo "<center>";
+				echo "Access denied";
+				echo "<br><a href=\"sign-in.php\"><img src=\"media/authentication.png\"></a>";
+				echo "</center>";
 			}
-		}
+		}elseif (!isset($username) && !isset($password)){
+			echo "<center>";
+			echo "Access denied Warning !!!";
+			echo "<br><a href=\"sign-in.php\"><img src=\"media/authentication.png\"></a>";
+			echo "</center>";
+			}
 	}
 }
 $db_con->close();
