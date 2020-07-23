@@ -22,7 +22,7 @@ if (isset($_GET["submit"])) {
 ?>
 <?php include 'include/layout/htmlstart.php'; ?>
     <center>
-        <?php include 'include/header.php' ?>
+        <?php include 'include/layout/header.php' ?>
         <form method="_GET">
             <table>
                 <tr>
