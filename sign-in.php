@@ -47,6 +47,7 @@ if (!isset($_GET["submit"])){
 			</tr>
 		</table>
 	</form>
+	<?php include 'include/layout/global_link.php'; ?>
 </center>
 <?php include 'include/layout/footer.php';?>
 <?php include 'include/layout/htmlend.php';?>

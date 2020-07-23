@@ -77,12 +77,7 @@ if (isset($_GET["submit"])) {
             echo "Please Enter Goods name";
         }
 ?>
-            
-            <br>
-            <br>
-            <a href="do-insert" ><img src="media/add.png"></a>
-            &nbsp;
-            <a href="sign-in.php" ><img src="media/authentication.png"></a>
+            <?php include 'include/layout/global_link.php'; ?>
     </center>
 <?php include 'include/layout/footer.php';?>
 <?php include 'include/layout/htmlend.php';?>
