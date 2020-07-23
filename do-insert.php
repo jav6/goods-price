@@ -11,12 +11,12 @@ if ($sql_qu_tok_result_num > 0){
         if ($row["token"] === $_SESSION["admin"]){
             echo "You are Admin";
         }else{
-            header("Location: http://s.s/goods-price/index");
+            header("Location: /");
         }
     }
 }
 }else{
-    header("Location: http://s.s/goods-price/index");
+    header("Location: /");
 }
 
 ?>
