@@ -1,8 +1,8 @@
 <?php
-
 //page info tag
 $title = "SignIn";
 $header = "For login";
+$localhost = "localhost";
 
 //database connection
 include 'include/db_con.php';
@@ -28,13 +28,10 @@ if (!isset($_GET["submit"])){
 				}
 			}
 		}
-	}
-	else{
-		$is_admin = null;
-		?>
+	}else{?>
 <?php include 'include/layout/htmlstart.php'; ?>
-<center>
 <?php include 'include/layout/header.php';?>
+<center>
 	<form action="" method="_GET">
 		<table>
 			<tr>
@@ -54,19 +51,23 @@ if (!isset($_GET["submit"])){
 </center>
 <?php include 'include/layout/footer.php';?>
 <?php include 'include/layout/htmlend.php';?>
-		<?php
-	}
-}elseif (isset($_GET["submit"])) {
+<?php
+		}
+		if ($is_admin === true) {
+			echo "you Are Admin";
+		}
+	}elseif (isset($_GET["submit"])){
 	if ($is_admin === null){
 	
 		$username = $_GET["username"];
 		$password = $_GET["password"];
 		
-		//set encrypt session for aut
 		if (isset($username) && isset($password)) {
+			
+			//encrypt session creator for aut
 			$str_source = "qa69zw13sxedcrfv2t4gbyhn5ujm78ikolp0";
-    			$str_result = "@UT-";
-    			$str_lenght = strlen($str_result);
+    		$str_result = "@UT-";
+    		$str_lenght = strlen($str_result);
 			while ($str_lenght <= 10){
 				$number = rand(1, 36);
 				$str_result .= substr($str_source, $number, 1);
@@ -77,6 +78,7 @@ if (!isset($_GET["submit"])){
 					break;
 				}
 			}
+
 			$sql_query_select = "SELECT username, password ";
 			$sql_query_select .= "FROM user ";
 			$sql_query_select .= "WHERE username = '{$username}' AND password = '{$password}';";
@@ -92,8 +94,8 @@ if (!isset($_GET["submit"])){
                 				$sql_query_update .= "token = '{$str_last_result}' ";
                 				$sql_query_update .= "WHERE username = '{$username}';";
 						if (mysqli_query($db_con, $sql_query_update) === true){
-							echo "You are Logged in";
-							header("Location: http://s.s/goods-price/index");
+							//echo "You are Logged in";
+							header("Location: http://".$localhost);
 						}
 						break;
 					}
@@ -101,37 +103,6 @@ if (!isset($_GET["submit"])){
 			}
 		}
 	}
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Sign In</title>
-</head>
-<body>
-	<center>
-	<form action="" method="_GET">
-		<table>
-			<tr>
-				<td>User name :</td>
-				<td><input type="text" name="username" /></td>
-			</tr>
-			<tr>
-				<td>Password :</td>
-				<td><input type="password" name="password" /></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" name="submit" value="Sign In" /></td>
-			</tr>
-		</table>
-	</form>
-</center>
-</body>
-</html>
-<?php
-}else{
-    echo "you Are Admin";
 }
 $db_con->close();
 ?>

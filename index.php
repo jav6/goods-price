@@ -82,7 +82,7 @@ if (isset($_GET["submit"])) {
             <br>
             <a href="do-insert" ><img src="media/add.png"></a>
             &nbsp;
-            <a href="sign-in" ><img src="media/authentication.png"></a>
+            <a href="sign-in.php" ><img src="media/authentication.png"></a>
     </center>
 <?php include 'include/layout/footer.php';?>
 <?php include 'include/layout/htmlend.php';?>
