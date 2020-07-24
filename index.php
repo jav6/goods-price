@@ -22,6 +22,7 @@ if (isset($_GET["submit"])) {
 }
 ?>
 <?php include 'include/layout/htmlstart.php'; ?>
+<?php include 'include/layout/header.php' ?>
 <?php include 'include/layout/search.php' ?>
 <?php include 'include/layout/footer.php';?>
 <?php include 'include/layout/htmlend.php';?>
