@@ -1,5 +1,7 @@
+![Alt text](https://github.com/jav6/goods-price/blob/master/media/zscreenshot.png?raw=true "goods-price")
+
 # Goods Price
-https://github.com/jav6/goods-price/blob/master/media/zscreenshot.png
+
 #App do:
 
 Create record in mysql table : price of goods
