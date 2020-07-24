@@ -1,2 +1,2 @@
 	<br>
-	<footer class="footer">v1.1</footer>
+	<footer class="footer">v1.2</footer>
