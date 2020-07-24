@@ -1,5 +1,4 @@
 <center>
-        <?php include 'include/layout/header.php' ?>
         <form method="_GET">
             <table>
                 <tr>
@@ -40,8 +39,8 @@
                     <td><?php echo $row["name"]; ?></td>
                     <td><?php echo $row["price"]; ?></td>
                     <td><?php echo $row["unit"]; ?></td>
-                    <td><a href="do-update?id=<?php echo $row["id"]."&name=".$row["name"]."&price=".$row["price"]."&unit=".$row["unit"]; ?>"><img src="media/pen.png"></a></td>
-                    <td><a href="do-delete?id=<?php echo $row["id"]; ?>"><img src="media/delete.png"></a></td>
+                    <td><a href="do-update.php?id=<?php echo $row["id"]."&name=".$row["name"]."&price=".$row["price"]."&unit=".$row["unit"]; ?>"><img src="media/pen.png"></a></td>
+                    <td><a href="do-delete.php?id=<?php echo $row["id"]; ?>"><img src="media/delete.png"></a></td>
                 </tr>
 <?php
     }
