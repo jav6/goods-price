@@ -13,10 +13,11 @@ session_start();
 $session = $_SESSION["admin"];
 check_session($session);
 
-if ($is_admin === true) {
-}else{
-    header("Location : /");
-}
+if ($is_admin === TRUE){
+        //echo "<p style=\"text-align:center; background-color: greenyellow;\">Admin</p>";
+    }else{
+        header("Location: /");
+    }
 
 if (isset($_GET["submit"])) {
 
