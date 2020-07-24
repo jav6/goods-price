@@ -1,28 +1,26 @@
 <?php
+//page info tag
+$title = "Updtate Data";
+$header = "For login";
 
+//include requirement
+//-database connection
+include 'include/db_con.php';
+//-include function
+include 'include/function.php';
 
-include 'db_con.php';
+//start (enable) session
 session_start();
-if (isset($_SESSION["admin"])){
-$sql_query_check_token = "SELECT token from user WHERE token = '{$_SESSION["admin"]}';";
-$sql_qu_tok_result = mysqli_query($db_con, $sql_query_check_token);
-$sql_qu_tok_result_num = mysqli_num_rows($sql_qu_tok_result);
-if ($sql_qu_tok_result_num > 0){
-    while ($row = mysqli_fetch_assoc($sql_qu_tok_result)){
-        if ($row["token"] === $_SESSION["admin"]){
-            echo "You are Admin";
-        }else{
-            header("Location: http://s.s/goods-price/index");
-        }
+
+$session = $_SESSION["admin"];
+//session checker
+check_session($session);
+
+if ($is_admin === TRUE){
+        //echo "<p style=\"text-align:center; background-color: greenyellow;\">Admin</p>";
+    }else{
+        header("Location: /");
     }
-}
-}else{
-    header("Location: http://s.s/goods-price/index");
-}
-
-
-// include database connection file
-//include 'db_con.php';
 
 if (isset($_GET["submit"])) {
 
@@ -51,45 +49,10 @@ if (isset($_GET["submit"])) {
                     echo 'Please Enter ID';
                     }
                     $db_con -> close();
-}
+                }
 ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Updtate Data</title>
-    </head>
-    <body>
-    <center>
-        <form action="">
-            <table>
-                <tr>
-                    <td>ID :</td>
-                    <td><input name="id" type="text" <?php if(isset($_GET["id"])){echo "value=\"".$_GET["id"]."\" style=\"pointer-events:none;\"";}?>/></td>
-                </tr>
-                <tr>
-                    <td>Name :</td>
-                    <td><input name="name" type="text" value="<?php if(isset($_GET["name"])){echo $_GET["name"];}?>" ></td>
-                </tr>
-                <tr>
-                    <td>Price :</td>
-                    <td><input name="price" type="text" value="<?php if(isset($_GET["price"])){echo $_GET["price"];}?>" ></td>
-                </tr>
-                <tr>
-                    <td>Unit :</td>
-                    <td><input name="unit" type="text" value="<?php if(isset($_GET["unit"])){echo $_GET["unit"];}?>" ></td>
-                </tr>
-                <tr>
-                    <td>New ID:</td>
-                    <td><input name="new_id" type="text"></td>
-                    <td>(Optional)</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input name="submit" type="submit" value="Submit"></td>
-                </tr>
-            </table>
-        </form>
-    </center>
-</body>
-</html>
+<?php include 'include/layout/htmlstart.php';?>
+<?php include 'include/layout/header.php';?>
+<?php include 'include/layout/update-form.php';?>
+<?php include 'include/layout/footer.php';?>
+<?php include 'include/layout/htmlend.php';?>
