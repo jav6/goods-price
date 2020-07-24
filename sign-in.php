@@ -3,8 +3,11 @@
 $title = "SignIn";
 $header = "For login";
 
-//database connection
+//include requirement
+//-database connection
 include 'include/db_con.php';
+//-include function
+include 'include/function.php';
 
 //start (enable) session
 session_start();
@@ -12,82 +15,36 @@ session_start();
 if (!isset($_GET["submit"])){
 
 	if (isset($_SESSION["admin"])){
+		//get session and value
+		$seession = $_SESSION["admin"];
 
-		//select token id form database
-		$sql_query_check_token = "SELECT token from user WHERE token = '{$_SESSION["admin"]}';";
-		
-		//get result - $sql_query_check_token
-		$sql_qu_tok_result = mysqli_query($db_con, $sql_query_check_token);
-		$sql_qu_tok_result_num = mysqli_num_rows($sql_qu_tok_result);
-		//if is set token for session :
-		if ($sql_qu_tok_result_num > 0){
-			while ($row = mysqli_fetch_assoc($sql_qu_tok_result)){
-				if ($row["token"] === $_SESSION["admin"]){
-					$is_admin = true;
-				}
-			}
-		}
-	}else{?>
+		//session checker
+		check_session($seession);
+	}
+?>
 <?php include 'include/layout/htmlstart.php'; ?>
 <?php include 'include/layout/header.php';?>
-<center>
-	<form action="" method="_GET">
-		<table>
-			<tr>
-				<td>User name :</td>
-				<td><input type="text" name="username" /></td>
-			</tr>
-			<tr>
-				<td>Password :</td>
-				<td><input type="password" name="password" /></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" name="submit" value="Sign In" /></td>
-			</tr>
-		</table>
-	</form>
-	<?php include 'include/layout/global_link.php'; ?>
-</center>
+	<?php if($is_admin === true){ //is admin?>
+
+<?php include 'include/layout/admin_ui.php'; //admin gui ?>
+
+	<?php }else{ //is other ?>
+
+<?php include 'include/layout/login_ui.php'; //login form ?>
+
+	<?php } ?>
 <?php include 'include/layout/footer.php';?>
 <?php include 'include/layout/htmlend.php';?>
+
 <?php
-		}
-		if ($is_admin === true) {?>
-<?php include 'include/layout/htmlstart.php'; ?>
-<?php include 'include/layout/header.php';?>
-<center>
-	<img src="media/safety.png" width="10%" height="10%">
-	<br>
-	<a href="include/do-clear-session.php">Log Out</a>
-	<?php include 'include/layout/global_link.php'; ?>
-</center>
-<?php include 'include/layout/footer.php';?>
-<?php include 'include/layout/htmlend.php';?>
-<?php
-		}
-	}elseif (isset($_GET["submit"])){
+}elseif (isset($_GET["submit"])){
 	if ($is_admin === null){
-	
+	    
+	    //rec - username and password
 		$username = $_GET["username"];
 		$password = $_GET["password"];
 		
 		if (isset($username) && isset($password)) {
-			
-			//encrypt session creator for aut
-			$str_source = "qa69zw13sxedcrfv2t4gbyhn5ujm78ikolp0";
-    		$str_result = "@UT-";
-    		$str_lenght = strlen($str_result);
-			while ($str_lenght <= 10){
-				$number = rand(1, 36);
-				$str_result .= substr($str_source, $number, 1);
-				$str_lenght = strlen($str_result);
-				if ($str_lenght == 10){
-					global $str_last_result;
-					$str_last_result = $str_result;
-					break;
-				}
-			}
 
 			$sql_query_select = "SELECT username, password ";
 			$sql_query_select .= "FROM user ";
@@ -95,9 +52,11 @@ if (!isset($_GET["submit"])){
 			
 			$result = mysqli_query($db_con, $sql_query_select);
     			$resultCheck = mysqli_num_rows($result);
+
 			if ($resultCheck > 0){
 				while($row = mysqli_fetch_assoc($result)){
 					if ($row["username"] = $username && $row["password"] = $password){
+						create_token();
 						$_SESSION["admin"]=$str_last_result;
 
                 				$sql_query_update = "UPDATE user SET ";
