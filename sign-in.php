@@ -16,10 +16,10 @@ if (!isset($_GET["submit"])){
 
 	if (isset($_SESSION["admin"])){
 		//get session and value
-		$seession = $_SESSION["admin"];
+		$session = $_SESSION["admin"];
 
 		//session checker
-		check_session($seession);
+		check_session($session);
 	}
 ?>
 <?php include 'include/layout/htmlstart.php'; ?>
