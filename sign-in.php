@@ -56,7 +56,10 @@ if (!isset($_GET["submit"])){
 			if ($resultCheck > 0){
 				while($row = mysqli_fetch_assoc($result)){
 					if ($row["username"] = $username && $row["password"] = $password){
+
+						//create encryption session
 						create_token();
+
 						$_SESSION["admin"]=$str_last_result;
 
                 				$sql_query_update = "UPDATE user SET ";
