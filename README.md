@@ -1,4 +1,4 @@
-<p style="text-align: center;">
+<div align="center">
 <img src="https://github.com/jav6/goods-price/blob/master/media/zscreenshot.png" alt="goods-price">
 
 # Goods Price
@@ -14,4 +14,4 @@ Update : goods of price in mysql
 Delete : price record from mysql
 
 #For CRUD price of goods in MySQL with php
-</p>
+</div>
