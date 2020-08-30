@@ -1,6 +1,6 @@
 <?php
 // create database connection
-$db_host = "mysql";
+$db_host = "localhost";
 $db_user = "root";
 $db_pass = "toor";
 $db_name = "goods-price";
